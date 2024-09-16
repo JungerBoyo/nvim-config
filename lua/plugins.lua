@@ -73,10 +73,35 @@ require("lazy").setup({
 		'jedrzejboczar/nvim-dap-cortex-debug',
 		dependencies = { 'nvim-dap', "rcarriga/nvim-dap-ui" }
 	},
-	{ "kevinhwang91/rnvimr" }
+	{ "kevinhwang91/rnvimr" },
+	{
+		"lervag/vimtex",
+		lazy = false,     -- we don't want to lazy load VimTeX
+		-- tag = "v2.15", -- uncomment to pin to a specific release
+		init = function()
+			-- VimTeX configuration goes here, e.g.
+			vim.g.vimtex_view_method = "zathura"
+  		end
+	},
+	{ "micangl/cmp-vimtex" },
+	{
+	  "dhananjaylatkar/cscope_maps.nvim",
+	  dependencies = {
+		"folke/which-key.nvim", -- optional [for whichkey hints]
+		"nvim-telescope/telescope.nvim", -- optional [for picker="telescope"]
+		"ibhagwan/fzf-lua", -- optional [for picker="fzf-lua"]
+		"echasnovski/mini.pick", -- optional [for picker="mini-pick"]
+		"nvim-tree/nvim-web-devicons", -- optional [for devicons in telescope, fzf or mini.pick]
+	  },
+	  opts = {
+		-- USE EMPTY FOR DEFAULT OPTIONS
+		-- DEFAULTS ARE LISTED BELOW
+	  },
+}
 })
 
 require("mason").setup()
 require("mason-nvim-dap").setup({ ensure_installed = { "python", "codelldb" } })
 require("cmake-tools").setup({})
 require('Comment').setup()
+--require("cmp-vimtex").setup()
